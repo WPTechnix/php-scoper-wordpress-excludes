@@ -1,0 +1,8 @@
+services:
+  build:
+    build:
+      context: ./docker
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: ["bin/generate.sh"]

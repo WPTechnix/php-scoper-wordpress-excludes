@@ -1,0 +1,39 @@
+{
+    "acf": {
+        "packages": {
+            "php-stubs/acf-pro-stubs": "v6.8.2"
+        },
+        "generated_at": "2026-07-09T11:43:24+00:00"
+    },
+    "action-scheduler": {
+        "packages": {
+            "woocommerce/action-scheduler": "4.0.0"
+        },
+        "generated_at": "2026-07-09T11:43:24+00:00"
+    },
+    "plugin-update-checker": {
+        "packages": {
+            "yahnis-elsts/plugin-update-checker": "v5.7"
+        },
+        "generated_at": "2026-07-09T11:43:25+00:00"
+    },
+    "woocommerce": {
+        "packages": {
+            "php-stubs/woocommerce-stubs": "v10.9.2"
+        },
+        "generated_at": "2026-07-09T11:43:22+00:00"
+    },
+    "wordpress": {
+        "packages": {
+            "php-stubs/wordpress-globals": "v0.2.0",
+            "php-stubs/wordpress-stubs": "v6.9.4"
+        },
+        "generated_at": "2026-07-09T11:43:21+00:00"
+    },
+    "wp-cli": {
+        "packages": {
+            "php-stubs/wp-cli-stubs": "v2.12.0"
+        },
+        "generated_at": "2026-07-09T11:43:24+00:00"
+    }
+}

@@ -1,0 +1,36 @@
+{
+    "name": "wptechnix/php-scoper-wordpress-excludes-build",
+    "description": "Internal build tooling that regenerates the /symbols exclude lists. Not published to Packagist.",
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "php": ">=8.1",
+        "ext-json": "*",
+        "nikic/php-parser": "^5.0",
+        "symfony/finder": "^6.4 || ^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5 || ^11.0",
+        "php-stubs/wordpress-stubs": "*",
+        "php-stubs/wordpress-globals": "*",
+        "php-stubs/woocommerce-stubs": "*",
+        "php-stubs/acf-pro-stubs": "*",
+        "php-stubs/wp-cli-stubs": "*",
+        "woocommerce/action-scheduler": "*",
+        "yahnis-elsts/plugin-update-checker": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "WPTechnix\\PhpScoperWordPressExcludesBuild\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "WPTechnix\\PhpScoperWordPressExcludesBuild\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable"
+}

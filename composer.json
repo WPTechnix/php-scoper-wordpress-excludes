@@ -1,0 +1,29 @@
+{
+    "name": "wptechnix/php-scoper-wordpress-excludes",
+    "description": "Curated, auto-updated PHP-Scoper exclude-symbol lists for WordPress core, WooCommerce, Action Scheduler, ACF PRO, WP-CLI and Plugin Update Checker.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "wordpress",
+        "woocommerce",
+        "action-scheduler",
+        "acf",
+        "wp-cli",
+        "plugin-update-checker",
+        "php-scoper",
+        "scoper",
+        "exclude-symbols"
+    ],
+    "homepage": "https://github.com/WPTechnix/php-scoper-wordpress-excludes",
+    "support": {
+        "issues": "https://github.com/WPTechnix/php-scoper-wordpress-excludes/issues",
+        "source": "https://github.com/WPTechnix/php-scoper-wordpress-excludes"
+    },
+    "require": {
+        "php": "^8.0"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable"
+}
