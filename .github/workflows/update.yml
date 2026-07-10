@@ -35,4 +35,6 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       - name: Run release script
-        run: bin/release.sh
+        run: |
+          chmod +x bin/release.sh bin/generate.sh
+          bin/release.sh
