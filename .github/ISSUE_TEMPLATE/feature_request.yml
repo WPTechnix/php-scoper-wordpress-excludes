@@ -1,0 +1,100 @@
+name: Feature Request
+description: Suggest a new feature or improvement for the project.
+labels:
+  - enhancement
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to suggest an improvement!
+
+        Before opening a new feature request, please check whether a similar request already exists.
+
+  - type: dropdown
+    id: request-type
+    attributes:
+      label: Request Type
+      description: What would you like to improve?
+      options:
+        - New package support
+        - Generator enhancement
+        - Documentation improvement
+        - CI / automation improvement
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: package-name
+    attributes:
+      label: Package Name
+      description: |
+        For new package requests, provide the Composer package name or repository URL.
+      placeholder: e.g. yoast/wordpress-seo
+
+  - type: input
+    id: package-source
+    attributes:
+      label: Package Source
+      description: |
+        If applicable, provide the upstream repository or stubs package.
+      placeholder: |
+        https://github.com/...
+        php-stubs/wordpress-stubs
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      description: |
+        Describe the problem you're trying to solve and how this feature would help.
+      placeholder: |
+        Supporting this package would allow projects that bundle it to generate complete exclude lists...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed Solution
+      description: |
+        Describe how you think the feature should work.
+      placeholder: |
+        The generator could...
+        A new command could...
+        Documentation could include...
+
+  - type: checkboxes
+    id: package-checklist
+    attributes:
+      label: Package Support Checklist
+      description: |
+        Complete this section only if you're requesting support for a new package.
+      options:
+        - label: The package is available through Composer (source or stubs).
+        - label: The package exposes top-level classes, interfaces, traits, enums, functions, or constants.
+        - label: The package is actively maintained.
+        - label: The package is widely used within the WordPress ecosystem.
+        - label: The requested symbols are not already covered by an existing supported package.
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Describe any alternatives or workarounds you've considered.
+      placeholder: |
+        I currently maintain my own exclude list...
+        I use PHP-Scoper's expose configuration...
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: |
+        Provide any additional information that may help evaluate this request, such as:
+        - related issues or discussions
+        - usage statistics
+        - example projects
+        - PHP-Scoper configuration
+        - other relevant details

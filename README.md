@@ -199,7 +199,7 @@ Tests use local fixtures only and do not require network access.
 
 Bug reports, feature requests and pull requests are welcome.
 
-Please run the test suite before submitting changes.
+Please run the test suite before submitting changes. Symbol files under `symbols/` are auto-generated; pull requests that hand-edit these files will not be accepted.
 
 ---
 

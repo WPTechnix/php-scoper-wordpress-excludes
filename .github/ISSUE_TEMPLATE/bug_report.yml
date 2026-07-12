@@ -1,0 +1,124 @@
+name: Bug Report
+description: Report a bug in the generated exclude lists or the generation process.
+labels:
+  - bug
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug!
+
+        Before opening a new issue, please check whether a similar report already exists.
+
+  - type: dropdown
+    id: bug-type
+    attributes:
+      label: Bug Type
+      description: What best describes the issue?
+      options:
+        - Missing symbol
+        - Incorrect symbol
+        - Unexpected symbol
+        - Generation failure
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: package
+    attributes:
+      label: Affected Package
+      description: Which supported package is affected?
+      options:
+        - wordpress
+        - woocommerce
+        - action-scheduler
+        - acf
+        - wp-cli
+        - plugin-update-checker
+        - multiple packages
+        - not package-specific
+    validations:
+      required: true
+
+  - type: input
+    id: package-version
+    attributes:
+      label: Upstream Package Version
+      description: The version of the affected package, if known.
+      placeholder: e.g. 6.8.2
+
+  - type: input
+    id: php-scoper-version
+    attributes:
+      label: PHP-Scoper Version
+      description: The version of PHP-Scoper you are using.
+      placeholder: e.g. 0.18.18
+    validations:
+      required: true
+
+  - type: textarea
+    id: symbols
+    attributes:
+      label: Affected Symbols
+      description: |
+        List the fully qualified symbol names affected by this issue.
+
+        Examples include classes, interfaces, traits, enums, functions, and constants.
+
+        • Missing symbol: the upstream symbol is not present in the generated list.
+        • Incorrect symbol: the symbol is present but has an incorrect name or type.
+        • Unexpected symbol: the generated list contains a symbol that should not exist.
+      placeholder: |
+        Missing:
+        - WP_CLI
+        - wp_some_function
+        - SOME_CONSTANT
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: upstream-reference
+    attributes:
+      label: Upstream Reference
+      description: |
+        Provide links to the relevant upstream source, stubs, or PHP documentation that verify the symbol.
+      placeholder: |
+        https://github.com/...
+        https://packagist.org/packages/...
+        https://www.php.net/...
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: Describe how to reproduce the issue.
+      placeholder: |
+        1. Generate the exclude lists.
+        2. Run PHP-Scoper.
+        3. Compare the generated output.
+        4. Observe the problem.
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant Output
+      description: |
+        Paste any relevant error messages, console output, or build logs.
+      render: text
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: |
+        Include any other information that may help investigate the issue, such as:
+        - PHP version
+        - Operating system
+        - custom `scoper.inc.php`
+        - relevant configuration
+        - anything else you think is useful
