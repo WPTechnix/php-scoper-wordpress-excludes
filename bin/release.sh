@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 #
-# Regenerates symbols/**/*.json (via generate.sh) and, if anything changed,
-# commits, tags the next semver patch version, and pushes both the commit
-# and the tag. This is the single entry point used both locally by a
-# maintainer and by .github/workflows/update.yml - the CI workflow does not
-# duplicate any of this logic, it only invokes this script.
+# Regenerates symbols/**/*.json (via generate.sh), commits any changes,
+# then creates a semver release tag *only* when the actual symbol data
+# (classes, functions, constants) differs from the last tag.  If only
+# versions.json metadata changed (e.g. an upstream version bump with no
+# new symbols), the commit is pushed without a tag.
+#
+# This is the single entry point used both locally by a maintainer and
+# by .github/workflows/update.yml – the CI workflow does not duplicate
+# any of this logic, it only invokes this script.
 #
 # Usage: bin/release.sh [--force] [--only=<package>]
 
@@ -16,15 +20,15 @@ cd "$REPO_ROOT"
 
 "$SCRIPT_DIR/generate.sh" "$@"
 
-if [ -z "$(git status --porcelain -- symbols/)" ]; then
-    echo "No symbol changes detected. Nothing to release."
+if [ -z "$(git status --porcelain)" ]; then
+    echo "No changes detected. Nothing to commit."
     exit 0
 fi
 
-echo "==> Changes detected under symbols/:"
-git status --porcelain -- symbols/
+echo "==> Changes detected:"
+git status --porcelain
 
-git add symbols/
+git add -A
 git commit -m "chore: update generated exclusion symbols"
 
 LAST_TAG="$(git tag --list 'v[0-9]*.[0-9]*.[0-9]*' \
@@ -32,17 +36,32 @@ LAST_TAG="$(git tag --list 'v[0-9]*.[0-9]*.[0-9]*' \
     | sort -t. -k1,1n -k2,2n -k3,3n \
     | tail -n1)"
 
-if [ -z "$LAST_TAG" ]; then
-    NEXT_TAG="v0.1.0"
-else
-    IFS='.' read -r MAJOR MINOR PATCH <<< "$LAST_TAG"
-    NEXT_TAG="v${MAJOR}.${MINOR}.$((PATCH + 1))"
+SHOULD_TAG=true
+
+if [ -n "$LAST_TAG" ]; then
+    TAG="v$LAST_TAG"
+    # Compare actual symbol data (not versions.json) against the last tag.
+    if git diff --quiet "$TAG" HEAD -- symbols/ ':!symbols/versions.json'; then
+        echo "Symbol data unchanged since $TAG. Skipping release tag."
+        SHOULD_TAG=false
+    fi
 fi
 
-echo "==> Tagging $NEXT_TAG"
-git tag -a "$NEXT_TAG" -m "Release $NEXT_TAG"
+if [ "$SHOULD_TAG" = true ]; then
+    if [ -z "$LAST_TAG" ]; then
+        NEXT_TAG="v0.1.0"
+    else
+        IFS='.' read -r MAJOR MINOR PATCH <<< "$LAST_TAG"
+        NEXT_TAG="v${MAJOR}.${MINOR}.$((PATCH + 1))"
+    fi
+
+    echo "==> Tagging $NEXT_TAG"
+    git tag -a "$NEXT_TAG" -m "Release $NEXT_TAG"
+fi
 
 git push origin HEAD
-git push origin "$NEXT_TAG"
 
-echo "==> Released $NEXT_TAG"
+if [ "$SHOULD_TAG" = true ]; then
+    git push origin "$NEXT_TAG"
+    echo "==> Released $NEXT_TAG"
+fi
