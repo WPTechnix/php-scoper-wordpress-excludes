@@ -20,15 +20,20 @@ cd "$REPO_ROOT"
 
 "$SCRIPT_DIR/generate.sh" "$@"
 
-if [ -z "$(git status --porcelain)" ]; then
-    echo "No changes detected. Nothing to commit."
+git add -A
+
+if git diff --cached --numstat | grep -qv '^0\t0\t'; then
+    echo "==> Changes detected:"
+    git diff --cached --stat
+else
+    if [ -z "$(git diff --cached --name-only)" ]; then
+        echo "No changes detected. Nothing to commit."
+    else
+        echo "Only mode changes detected. Nothing to commit."
+    fi
     exit 0
 fi
 
-echo "==> Changes detected:"
-git status --porcelain
-
-git add -A
 git commit -m "chore: update generated exclusion symbols"
 
 LAST_TAG="$(git tag --list 'v[0-9]*.[0-9]*.[0-9]*' \
