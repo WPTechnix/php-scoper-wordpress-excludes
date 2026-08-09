@@ -1,6 +1,6 @@
 [
-    "action_scheduler_initialize_4_dot_0_dot_0",
-    "action_scheduler_register_4_dot_0_dot_0",
+    "action_scheduler_initialize_4_dot_1_dot_0",
+    "action_scheduler_register_4_dot_1_dot_0",
     "as_enqueue_async_action",
     "as_get_datetime_object",
     "as_get_scheduled_actions",

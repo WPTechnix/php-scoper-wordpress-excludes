@@ -40,6 +40,7 @@
     "ActionScheduler_QueueRunner",
     "ActionScheduler_RecurringActionScheduler",
     "ActionScheduler_Schedule",
+    "ActionScheduler_ScheduleDeserializer",
     "ActionScheduler_Schedule_Deprecated",
     "ActionScheduler_SimpleSchedule",
     "ActionScheduler_Store",
