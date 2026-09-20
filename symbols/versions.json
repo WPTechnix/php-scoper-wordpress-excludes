@@ -7,9 +7,9 @@
     },
     "action-scheduler": {
         "packages": {
-            "woocommerce/action-scheduler": "4.1.0"
+            "woocommerce/action-scheduler": "4.2.0"
         },
-        "generated_at": "2026-08-09T02:11:56+00:00"
+        "generated_at": "2026-09-20T04:33:28+00:00"
     },
     "plugin-update-checker": {
         "packages": {
@@ -19,9 +19,9 @@
     },
     "woocommerce": {
         "packages": {
-            "php-stubs/woocommerce-stubs": "v11.1.0"
+            "php-stubs/woocommerce-stubs": "v11.1.1"
         },
-        "generated_at": "2026-09-06T04:09:54+00:00"
+        "generated_at": "2026-09-20T04:33:28+00:00"
     },
     "wordpress": {
         "packages": {
